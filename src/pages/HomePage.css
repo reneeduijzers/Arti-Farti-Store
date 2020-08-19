@@ -1,0 +1,17 @@
+.ArtPic {
+  width: 50%;
+  height: 50%;
+}
+
+.Button {
+  background-color: rgb(212, 212, 212);
+  color: black;
+  font-size: 12px;
+  padding: 10px 24px;
+  text-align: center;
+  border: 0.1px solid #000000;
+}
+
+.ButtonLink {
+  color: black;
+}
