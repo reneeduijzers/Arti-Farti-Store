@@ -19,6 +19,18 @@ export default (state = initialState, action) => {
       });
       return newState;
     }
+    case "ADD_BID": {
+      console.log("step 7: inside the case ADD_BID:", action.payload);
+      const newState = state.map((artwork) => {
+        if (artwork.id === action.payload.artworkId) {
+          const newBid = action.payload;
+          const newArtwork = { ...artwork, bids: [...artwork.bids, newBid] };
+          return newArtwork;
+        }
+        return artwork;
+      });
+      return newState;
+    }
     default:
       return state;
   }

@@ -21,3 +21,29 @@ export const addHeart = (heart, id) => {
     dispatch({ type: "LOVE", payload: artwork });
   };
 };
+
+export const addBid = (bid, id) => {
+  return async (dispatch, getState) => {
+    const state = getState();
+    const email = state.user.email;
+    const token = state.user.token;
+
+    const response = await Axios.post(
+      "http://localhost:4000/addbid",
+      {
+        email: email,
+        amount: bid,
+        artworkId: id,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    console.log("Did the API hanle the post bid request?", response);
+    const newBid = response.data;
+    dispatch({ type: "ADD_BID", payload: newBid });
+  };
+};
