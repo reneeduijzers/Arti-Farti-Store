@@ -6,6 +6,18 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case "ALL_ARTWORKS":
       return [...state, ...action.payload];
+    case "LOVE": {
+      console.log("step 7: inside the case LOVE:", state);
+      const newState = state.map((artwork) => {
+        if (artwork.id === action.payload) {
+          const newLove = artwork.hearts + 1;
+          const newArtwork = { ...artwork, hearts: newLove };
+          return newArtwork;
+        }
+        return artwork;
+      });
+      return newState;
+    }
     default:
       return state;
   }

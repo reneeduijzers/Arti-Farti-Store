@@ -8,3 +8,14 @@ export async function fetchArtworks(dispatch, getState) {
     dispatch({ type: "ALL_ARTWORKS", payload: artworks });
   }
 }
+
+export const addHeart = (heart, id) => {
+  return async (dispatch) => {
+    const response = await Axios.patch("http://localhost:4000/addheart", {
+      hearts: heart,
+      artworkId: id,
+    });
+    const artwork = response.data.id;
+    dispatch({ type: "LOVE", payload: artwork });
+  };
+};
