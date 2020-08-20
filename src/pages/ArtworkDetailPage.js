@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllArtworks } from "../store/artwork/selectors";
@@ -44,11 +44,14 @@ export default function ArtworkDetailPage() {
     dispatch(addBid(bid, id));
   }
 
-  const [hearts, set_Hearts] = useState("");
-
-  useEffect(() => {
+  function incrementHeart(event) {
+    event.preventDefault();
+    const heartsArray = filteredArtworks.map((artwork) => {
+      return artwork.hearts + 1;
+    });
+    const hearts = heartsArray[0];
     dispatch(addHeart(hearts, id));
-  }, [dispatch, hearts, id]);
+  }
 
   return (
     <div>
@@ -59,10 +62,7 @@ export default function ArtworkDetailPage() {
               {artwork.title} ♥ ({artwork.hearts})
             </h1>
             <p>
-              <button
-                className="Button"
-                onClick={(e) => set_Hearts(artwork.hearts + 1)}
-              >
+              <button className="Button" onClick={incrementHeart}>
                 give heart
               </button>
             </p>
