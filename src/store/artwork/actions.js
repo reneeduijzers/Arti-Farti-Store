@@ -16,7 +16,7 @@ export const addHeart = (heart, id) => {
       hearts: heart,
       artworkId: id,
     });
-    console.log("did the API handle the patch heart request?", response);
+    console.log("did the API handle the PATCH heart request?", response);
     const artwork = response.data.id;
     dispatch({ type: "LOVE", payload: artwork });
   };
@@ -42,8 +42,33 @@ export const addBid = (bid, id) => {
       }
     );
 
-    console.log("Did the API hanle the post bid request?", response);
+    console.log("Did the API handle the POST add bid request?", response);
     const newBid = response.data;
     dispatch({ type: "ADD_BID", payload: newBid });
+  };
+};
+
+export const addArtwork = (title, bid, url) => {
+  return async (dispatch, getState) => {
+    const { user } = getState();
+    const id = user.id;
+    const token = user.token;
+
+    const response = await Axios.post(
+      "http://localhost:4000/addartwork",
+      {
+        title: title,
+        imageUrl: url,
+        minimumBid: bid,
+        userId: id,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    console.log("Did the API handle the POST add artwork request?", response);
   };
 };
