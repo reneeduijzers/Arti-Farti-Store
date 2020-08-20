@@ -12,6 +12,8 @@ export default function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isArtist, setIsArtist] = useState(false);
+  console.log("What is isArtist?", isArtist);
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const history = useHistory();
@@ -25,7 +27,7 @@ export default function SignUp() {
   function submitForm(event) {
     event.preventDefault();
 
-    dispatch(signUp(name, email, password));
+    dispatch(signUp(name, email, password, isArtist));
 
     setEmail("");
     setPassword("");
@@ -40,7 +42,7 @@ export default function SignUp() {
           <Form.Label>Name</Form.Label>
           <Form.Control
             value={name}
-            onChange={event => setName(event.target.value)}
+            onChange={(event) => setName(event.target.value)}
             type="text"
             placeholder="Enter name"
             required
@@ -50,7 +52,7 @@ export default function SignUp() {
           <Form.Label>Email address</Form.Label>
           <Form.Control
             value={email}
-            onChange={event => setEmail(event.target.value)}
+            onChange={(event) => setEmail(event.target.value)}
             type="email"
             placeholder="Enter email"
             required
@@ -59,12 +61,21 @@ export default function SignUp() {
             We'll never share your email with anyone else.
           </Form.Text>
         </Form.Group>
+        <Form.Group controlId="formCheckBox">
+          <Form.Label></Form.Label>
+          <Form.Control
+            value={isArtist}
+            onChange={(event) => setIsArtist(isArtist ? false : true)}
+            type="checkbox"
+          />
+          <Form.Text className="text-muted">Are you an Artist?</Form.Text>
+        </Form.Group>
 
         <Form.Group controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
             value={password}
-            onChange={event => setPassword(event.target.value)}
+            onChange={(event) => setPassword(event.target.value)}
             type="password"
             placeholder="Password"
             required
