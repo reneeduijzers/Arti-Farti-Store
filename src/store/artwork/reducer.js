@@ -5,6 +5,7 @@ export default (state = initialState, action) => {
   console.log("step 6: inside the reducer, payload:", action.payload);
   switch (action.type) {
     case "ALL_ARTWORKS":
+      console.log("step 7: inside the case ALL_ARTWORKS:", state);
       return [...state, ...action.payload];
     case "LOVE": {
       console.log("step 7: inside the case LOVE:", state);

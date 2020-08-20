@@ -18,10 +18,8 @@ export default function ArtworkDetailPage() {
   });
 
   const id = route_parameters.id;
-  // console.log("What is artwork id?", id);
 
   const [hearts, set_Hearts] = useState("");
-  console.log("What is hearts?", hearts);
 
   useEffect(() => {
     dispatch(addHeart(hearts, id));
