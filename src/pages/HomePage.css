@@ -1,6 +1,12 @@
+.Artwork {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .ArtPic {
-  width: 50%;
-  height: 50%;
+  width: 100%;
+  height: 100%;
 }
 
 .Button {

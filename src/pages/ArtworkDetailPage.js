@@ -19,21 +19,38 @@ export default function ArtworkDetailPage() {
     }
   });
 
-  // // ATTEMPT TO SORT THE BIDS AND SET THE MINIMUVALUE ACCORDINGLY:
+  // // find returns an object ! should have used that
+
   // console.log("What is filtered artworks?", filteredArtworks); // an array with objects + bids array with 5 objects
 
-  // const bids = filteredArtworks.map((artwork) => {
-  //   return { ...artwork.bids };
-  // });
+  // console.log("What is filtered artworks?", filteredArtworks[0]); // now one object with bids array with 5 objects
 
-  // console.log("What is bids?", bids); // an array with 5 objects
+  // const artworkToDisplay = filteredArtworks[0];
 
-  // // Why does sort function not work?!?
-  // const bidsSorted = [...bids].sort(
+  // // acces bids in your object =
+  // const bidsSorted = [...artworkToDisplay.bids].sort(
   //   (bid_a, bid_b) => bid_b.amount - bid_a.amount
   // );
 
-  // console.log("What is bids sorted?", bidsSorted);
+  // // How to use reduce =
+  // const maxBidAmount = artworkToDisplay.bids.reduce((acc, bid) => {
+  //   // [{}, {}, {}]
+  //   if (acc < bid.amount) {
+  //     return bid.amount;
+  //   } else {
+  //     return acc;
+  //   }
+  // }, 0);
+
+  // const maxBidAmount2 = artworkToDisplay.bids.reduce(
+  //   (acc, bid) => (acc > bid.amount ? acc : bid.amount),
+  //   0
+  // );
+
+  // const totalBid = artworkToDisplay.bids.reduce(
+  //   (acc, bid) => acc + bid.amount,
+  //   0
+  // );
 
   const id = route_parameters.id;
 
@@ -54,7 +71,7 @@ export default function ArtworkDetailPage() {
   }
 
   return (
-    <div>
+    <div className="Artwork">
       {filteredArtworks.map((artwork) => {
         return (
           <ul key={artwork.id}>
