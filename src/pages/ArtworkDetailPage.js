@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllArtworks } from "../store/artwork/selectors";
 import { selectUser } from "../store/user/selectors";
 import { addHeart, addBid } from "../store/artwork/actions";
+import { Container, Row, Col } from "react-bootstrap";
 
 export default function ArtworkDetailPage() {
   const artworks = useSelector(getAllArtworks);
@@ -71,56 +72,64 @@ export default function ArtworkDetailPage() {
   }
 
   return (
-    <div className="Artwork">
-      {filteredArtworks.map((artwork) => {
-        return (
-          <ul key={artwork.id}>
-            <h1>
-              {artwork.title} ♥ ({artwork.hearts})
-            </h1>
-            <p>
-              <button className="Button" onClick={incrementHeart}>
-                give heart
-              </button>
-            </p>
-            <p>
-              <img className="ArtPic" src={artwork.imageUrl} alt="artwork" />
-            </p>
-            {artwork.bids.map((bid) => {
-              return (
-                <ul key={bid.id}>
-                  <h4>{bid.amount} euro</h4>
-                  <p>bidder: {bid.email}</p>
-                </ul>
-              );
-            })}
-          </ul>
-        );
-      })}
-      {user.token ? (
-        <form onSubmit={handleSubmit}>
-          <p>
-            <label>
-              Amount (Euro):{" "}
-              <input
-                type="number"
-                min={filteredArtworks.map((artwork) => {
-                  return artwork.minimumBid;
+    <Container>
+      <Row>
+        <Col>
+          {filteredArtworks.map((artwork) => {
+            return (
+              <ul key={artwork.id}>
+                <h1>
+                  {artwork.title} ♥ ({artwork.hearts})
+                </h1>
+                <p>
+                  <button className="Button" onClick={incrementHeart}>
+                    give heart
+                  </button>
+                </p>
+                <p>
+                  <img
+                    className="ArtPic"
+                    src={artwork.imageUrl}
+                    alt="artwork"
+                  />
+                </p>
+                {artwork.bids.map((bid) => {
+                  return (
+                    <ul key={bid.id}>
+                      <h4>{bid.amount} euro</h4>
+                      <p>bidder: {bid.email}</p>
+                    </ul>
+                  );
                 })}
-                value={bid}
-                onChange={(e) => set_Bid(e.target.value)}
-              />
-            </label>
-          </p>
-          <p>
-            <button className="Button" type="submit">
-              BID!
-            </button>
-          </p>
-        </form>
-      ) : (
-        ""
-      )}
-    </div>
+              </ul>
+            );
+          })}
+          {user.token ? (
+            <form onSubmit={handleSubmit}>
+              <p>
+                <label>
+                  Amount (Euro):{" "}
+                  <input
+                    type="number"
+                    min={filteredArtworks.map((artwork) => {
+                      return artwork.minimumBid;
+                    })}
+                    value={bid}
+                    onChange={(e) => set_Bid(e.target.value)}
+                  />
+                </label>
+              </p>
+              <p>
+                <button className="Button" type="submit">
+                  BID!
+                </button>
+              </p>
+            </form>
+          ) : (
+            ""
+          )}
+        </Col>
+      </Row>
+    </Container>
   );
 }
