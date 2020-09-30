@@ -19,7 +19,7 @@ Renee's Arti-Farti-Store is an auction platform for artworks, for potential buye
 - Sequelize as ORM
 - React Bootstrap 
 
-## Urban Yoga Amsterdam online 
+## Renee's Arti-Farti-Store online
 
 You can find working version [here](https://artworkstore-reneeduijzers.netlify.app).
 
