@@ -18,10 +18,11 @@ Renee's Arti-Farti-Store is an auction platform for artworks, for potential buye
 - Fetching data with UseEffect and Axios
 - Sequelize as ORM
 - React Bootstrap 
+- Backend is deployed by Heroku
 
-## Renee's Arti-Farti-Store Online
+## Online
 
-You can find working version [here](https://artworkstore-reneeduijzers.netlify.app).
+You can find a working version [here](https://artworkstore-reneeduijzers.netlify.app).
 
 ## Sample 
 
