@@ -11,11 +11,12 @@ Renee's Arti-Farti-Store is an auction platform for artworks, for potential buye
 - React for UI
 - React State Management
 - Redux for Global State Management
-- Implemented sign-up/log-in
+- Implementing sign-up/log-in
 - Authentication by JWT
 - Privacy by creating hashed passwords
 - RESTful API with Express
-- Fetching data with UseEffect and Axios
+- Fetching data with useEffect and Axios
+- PostgreSQL Database 
 - Sequelize as ORM
 - React Bootstrap 
 - Backend is deployed by Heroku
