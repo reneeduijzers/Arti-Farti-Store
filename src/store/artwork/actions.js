@@ -3,7 +3,7 @@ import Axios from "axios";
 export async function fetchArtworks(dispatch, getState) {
   const { artwork } = getState();
   if (!artwork.length) {
-    const response = await Axios.get("http://localhost:4000");
+    const response = await Axios.get("https://artwork-server.herokuapp.com");
     console.log("did the API handle the get artworks request?", response);
     const artworks = response.data;
     dispatch({ type: "ALL_ARTWORKS", payload: artworks });
