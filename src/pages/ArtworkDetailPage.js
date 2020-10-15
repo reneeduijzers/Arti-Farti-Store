@@ -5,6 +5,8 @@ import { getAllArtworks } from "../store/artwork/selectors";
 import { selectUser } from "../store/user/selectors";
 import { addHeart, addBid } from "../store/artwork/actions";
 import { Container, Row, Col } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 export default function ArtworkDetailPage() {
   const artworks = useSelector(getAllArtworks);
@@ -72,20 +74,23 @@ export default function ArtworkDetailPage() {
   }
 
   return (
-    <Container>
+    <Container className="Artwork-detail-container">
       <Row>
         <Col>
           {filteredArtworks.map((artwork) => {
             return (
-              <ul key={artwork.id}>
+              <div key={artwork.id}>
                 <h1>
-                  {artwork.title} ♥ ({artwork.hearts})
+                  {artwork.title}{" "}
+                  <img
+                    className="Heart-pic2"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT5NRNEYeS6fCTvDJc49V9vi2bSwGcPyn2aIw&usqp=CAU"
+                    alt="heart"
+                    onClick={incrementHeart}
+                    style={{ cursor: "pointer" }}
+                  />{" "}
+                  ({artwork.hearts})
                 </h1>
-                <p>
-                  <button className="Button" onClick={incrementHeart}>
-                    give heart
-                  </button>
-                </p>
                 <p>
                   <img
                     className="ArtPic"
@@ -101,30 +106,30 @@ export default function ArtworkDetailPage() {
                     </ul>
                   );
                 })}
-              </ul>
+              </div>
             );
           })}
           {user.token ? (
-            <form onSubmit={handleSubmit}>
-              <p>
-                <label>
-                  Amount (Euro):{" "}
-                  <input
-                    type="number"
-                    min={filteredArtworks.map((artwork) => {
-                      return artwork.minimumBid;
-                    })}
-                    value={bid}
-                    onChange={(e) => set_Bid(e.target.value)}
-                  />
-                </label>
-              </p>
-              <p>
-                <button className="Button" type="submit">
-                  BID!
-                </button>
-              </p>
-            </form>
+            <Form>
+              <Form.Group controlId="formBasicBid">
+                <Form.Label>Bid</Form.Label>
+                <Form.Control
+                  type="number"
+                  min={filteredArtworks.map((artwork) => {
+                    return artwork.minimumBid;
+                  })}
+                  value={bid}
+                  onChange={(e) => set_Bid(e.target.value)}
+                  placeholder="Enter bid"
+                  required
+                />
+              </Form.Group>
+              <Form.Group className="mt-5">
+                <Button variant="primary" type="submit" onClick={handleSubmit}>
+                  Place bid
+                </Button>
+              </Form.Group>
+            </Form>
           ) : (
             ""
           )}

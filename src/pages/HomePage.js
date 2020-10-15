@@ -45,6 +45,7 @@ export default function HomePage() {
           );
         })}
       </Row>
+      <Row className="Header"></Row>
     </Container>
   );
 }
