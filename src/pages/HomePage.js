@@ -15,28 +15,31 @@ export default function HomePage() {
   }, [dispatch]);
 
   return (
-    <Container>
+    <Container fluid className="Artwork-container">
       <Row>
         {artworks.map((artwork) => {
           return (
             <Col key={artwork.id}>
               <ul>
                 <h3>
-                  {artwork.title} ♥ ({artwork.hearts})
+                  {artwork.title}{" "}
+                  <img
+                    className="Heart-pic"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT5NRNEYeS6fCTvDJc49V9vi2bSwGcPyn2aIw&usqp=CAU"
+                    alt="heart"
+                  />{" "}
+                  ({artwork.hearts})
                 </h3>
                 <p>
-                  <img
-                    className="ArtPic"
-                    src={artwork.imageUrl}
-                    alt="artwork"
-                  />
+                  <Link to={`/artworks/${artwork.id}`}>
+                    <img
+                      className="Art-pic"
+                      src={artwork.imageUrl}
+                      alt="artwork"
+                    />
+                  </Link>
                 </p>
                 <h5>total bids: {artwork.bids.length}</h5>
-                <button className="Button">
-                  <Link className="ButtonLink" to={`/artworks/${artwork.id}`}>
-                    view details
-                  </Link>
-                </button>
               </ul>
             </Col>
           );
