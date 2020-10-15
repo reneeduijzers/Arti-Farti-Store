@@ -3,7 +3,7 @@ import Axios from "axios";
 export async function fetchArtworks(dispatch, getState) {
   const { artwork } = getState();
   if (!artwork.length) {
-    const response = await Axios.get("https://artwork-server.herokuapp.com");
+    const response = await Axios.get(`${apiUrl}`);
     console.log("did the API handle the get artworks request?", response);
     const artworks = response.data;
     dispatch({ type: "ALL_ARTWORKS", payload: artworks });
@@ -12,13 +12,10 @@ export async function fetchArtworks(dispatch, getState) {
 
 export const addHeart = (heart, id) => {
   return async (dispatch) => {
-    const response = await Axios.patch(
-      "https://artwork-server.herokuapp.com/addheart",
-      {
-        hearts: heart,
-        artworkId: id,
-      }
-    );
+    const response = await Axios.patch(`${apiUrl}/addheart`, {
+      hearts: heart,
+      artworkId: id,
+    });
     console.log("did the API handle the PATCH heart request?", response);
     const artwork = response.data.id;
     dispatch({ type: "LOVE", payload: artwork });
@@ -30,9 +27,8 @@ export const addBid = (bid, id) => {
     const state = getState();
     const email = state.user.email;
     const token = state.user.token;
-
     const response = await Axios.post(
-      "https://artwork-server.herokuapp.com/addbid",
+      `${apiUrl}/addbid`,
       {
         email: email,
         amount: bid,
@@ -58,7 +54,7 @@ export const addArtwork = (title, bid, url) => {
     const token = user.token;
 
     const response = await Axios.post(
-      "https://artwork-server.herokuapp.com/addartwork",
+      `${apiUrl}/addartwork`,
       {
         title: title,
         imageUrl: url,
