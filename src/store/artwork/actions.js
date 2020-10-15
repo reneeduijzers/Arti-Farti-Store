@@ -1,4 +1,5 @@
 import Axios from "axios";
+import { apiUrl } from "../../config/constants";
 
 export async function fetchArtworks(dispatch, getState) {
   const { artwork } = getState();

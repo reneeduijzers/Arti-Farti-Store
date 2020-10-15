@@ -19,8 +19,8 @@ export default function HomePage() {
       <Row>
         {artworks.map((artwork) => {
           return (
-            <Col>
-              <ul key={artwork.id}>
+            <Col key={artwork.id}>
+              <ul>
                 <h3>
                   {artwork.title} ♥ ({artwork.hearts})
                 </h3>
