@@ -26,16 +26,14 @@ export default function HomePage() {
         <Col style={{
           display: "flex",
           justifyContent: "center",
-          textAlign: "center"
+          textAlign: "center",
+          marginRight: 100,
+          marginLeft: 100,      
         }}>
         <h2>Hi there, please have a look our current available artworks. 
         <br/>
         Interested?   
-        <Link to="/signup" style={{ textAlign: "center" }}> Sign up</Link> to participate in one of our auctions and place a bid.
-        <br/>
-        Artist? 
-        <Link to="/signup" style={{ textAlign: "center" }}> Sign up
-        </Link> to post your artwork and start to receive offers!
+        <Link to="/signup" style={{ textAlign: "center" }}> Sign up</Link> to participate in one of our auctions and place a bid, or post you artwork and start to receive offers!
         <br/>
         <br/>
         </h2>
