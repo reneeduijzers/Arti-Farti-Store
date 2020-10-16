@@ -9,20 +9,20 @@ import { Col } from "react-bootstrap";
 export default function AuctionPage() {
   const dispatch = useDispatch();
   const [title, set_Title] = useState("");
-  const [bid, set_Bid] = useState("");
+  const [minimumBid, set_MinimumBid] = useState("");
   const [url, set_Url] = useState("");
   const [message, set_message] = useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
-    dispatch(addArtwork(title, bid, url));
+    dispatch(addArtwork(title, minimumBid, url));
     set_message("Succes! You will receive offers soon :)");
   }
 
   return (
     <Container>
       <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
-        <h1 className="mt-5 mb-5">Hi there artist, post your artworks here:</h1>
+        <h1 className="mt-5 mb-5">Hi there artist, post your artworks here.</h1>
         <Form.Group controlId="formBasicTitle">
           <Form.Label>Title</Form.Label>
           <Form.Control
@@ -37,8 +37,8 @@ export default function AuctionPage() {
           <Form.Label>MinimumBid</Form.Label>
           <Form.Control
             type="number"
-            value={bid}
-            onChange={(e) => set_Bid(e.target.value)}
+            value={minimumBid}
+            onChange={(e) => set_MinimumBid(e.target.value)}
             placeholder="Enter minimum bid"
             required
           />

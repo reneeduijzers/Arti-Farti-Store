@@ -48,19 +48,19 @@ export const addBid = (bid, id) => {
   };
 };
 
-export const addArtwork = (title, bid, url) => {
+export const addArtwork = (title, minimumBid, url) => {
   return async (dispatch, getState) => {
     const { user } = getState();
     const id = user.id;
     const token = user.token;
-
+   
     const response = await Axios.post(
       `${apiUrl}/addartwork`,
       {
         title: title,
         imageUrl: url,
-        minimumBid: bid,
-        userId: id,
+        minimumBid: minimumBid,
+        userId: id,   
       },
       {
         headers: {
@@ -68,7 +68,8 @@ export const addArtwork = (title, bid, url) => {
         },
       }
     );
-
-    console.log("Did the API handle the POST add artwork request?", response);
+  console.log("Did the API handle the POST add artwork request?", response);
+  const newArtwork = response.data;
+    dispatch({ type: "ADD_ARTWORK", payload: newArtwork });
   };
 };

@@ -13,6 +13,8 @@ export default function ArtworkDetailPage() {
   const user = useSelector(selectUser);
   const route_parameters = useParams();
   const dispatch = useDispatch();
+  const id = route_parameters.id;
+  const [bid, set_Bid] = useState("");
 
   const filteredArtworks = artworks.filter((artwork) => {
     if (artwork.id === parseInt(route_parameters.id)) {
@@ -22,46 +24,23 @@ export default function ArtworkDetailPage() {
     }
   });
 
-  // // find returns an object ! should have used that
+  // Could have used find, return an object instead of an array. 
 
-  // console.log("What is filtered artworks?", filteredArtworks); // an array with objects + bids array with 5 objects
+  const artworkDisplayed = filteredArtworks[0];
+  const minimumBid = artworkDisplayed.minimumBid
 
-  // console.log("What is filtered artworks?", filteredArtworks[0]); // now one object with bids array with 5 objects
+  const bidsSorted = [...artworkDisplayed.bids].sort(
+    (bid_a, bid_b) => bid_b.amount - bid_a.amount
+  );
 
-  // const artworkToDisplay = filteredArtworks[0];
-
-  // // acces bids in your object =
-  // const bidsSorted = [...artworkToDisplay.bids].sort(
-  //   (bid_a, bid_b) => bid_b.amount - bid_a.amount
-  // );
-
-  // // How to use reduce =
-  // const maxBidAmount = artworkToDisplay.bids.reduce((acc, bid) => {
-  //   // [{}, {}, {}]
-  //   if (acc < bid.amount) {
-  //     return bid.amount;
-  //   } else {
-  //     return acc;
-  //   }
-  // }, 0);
-
-  // const maxBidAmount2 = artworkToDisplay.bids.reduce(
-  //   (acc, bid) => (acc > bid.amount ? acc : bid.amount),
-  //   0
-  // );
-
-  // const totalBid = artworkToDisplay.bids.reduce(
-  //   (acc, bid) => acc + bid.amount,
-  //   0
-  // );
-
-  const id = route_parameters.id;
-
-  const [bid, set_Bid] = useState("");
-
+  function onChange(event) {
+    set_Bid(event.target.value)}
+  
   function handleSubmit(event) {
+    if (bid > minimumBid) {
     event.preventDefault();
     dispatch(addBid(bid, id));
+    }
   }
 
   function incrementHeart(event) {
@@ -98,10 +77,11 @@ export default function ArtworkDetailPage() {
                     alt="artwork"
                   />
                 </p>
-                {artwork.bids.map((bid) => {
+                {bidsSorted.map((bid) => {
                   return (
                     <ul key={bid.id}>
-                      <h4>{bid.amount} euro</h4>
+                      <h4 style={{fontWeight: "bold"}}   
+                      >{bid.amount} euro</h4>
                       <p>bidder: {bid.email}</p>
                     </ul>
                   );
@@ -115,11 +95,9 @@ export default function ArtworkDetailPage() {
                 <Form.Label>Bid</Form.Label>
                 <Form.Control
                   type="number"
-                  min={filteredArtworks.map((artwork) => {
-                    return artwork.minimumBid;
-                  })}
+                  min={minimumBid}
                   value={bid}
-                  onChange={(e) => set_Bid(e.target.value)}
+                  onChange={onChange}
                   placeholder="Enter bid"
                   required
                 />
@@ -138,3 +116,24 @@ export default function ArtworkDetailPage() {
     </Container>
   );
 }
+
+
+  // // How to use reduce =
+  // const maxBidAmount = artworkToDisplay.bids.reduce((acc, bid) => {
+  //   // [{}, {}, {}]
+  //   if (acc < bid.amount) {
+  //     return bid.amount;
+  //   } else {
+  //     return acc;
+  //   }
+  // }, 0);
+
+  // const maxBidAmount2 = artworkToDisplay.bids.reduce(
+  //   (acc, bid) => (acc > bid.amount ? acc : bid.amount),
+  //   0
+  // );
+
+  // const totalBid = artworkToDisplay.bids.reduce(
+  //   (acc, bid) => acc + bid.amount,
+  //   0
+  // );

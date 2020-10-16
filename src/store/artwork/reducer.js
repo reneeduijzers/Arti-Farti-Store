@@ -7,6 +7,11 @@ export default (state = initialState, action) => {
     case "ALL_ARTWORKS":
       console.log("step 7: inside the case ALL_ARTWORKS:", state);
       return [...state, ...action.payload];
+    case "ADD_ARTWORK":
+      console.log("step 7: inside the case ADD_ARTWORK:", state);
+      return [...state, 
+     { ...action.payload, bids: [] }
+      ]; 
     case "LOVE": {
       console.log("step 7: inside the case LOVE:", state);
       const newState = state.map((artwork) => {
