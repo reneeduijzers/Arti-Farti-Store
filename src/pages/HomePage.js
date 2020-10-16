@@ -30,10 +30,10 @@ export default function HomePage() {
           marginRight: 100,
           marginLeft: 100,      
         }}>
-        <h2>Hi there, please have a look our current available artworks. 
+        <h2>Hi there, please have a look at our current available artworks. 
         <br/>
         Interested?   
-        <Link to="/signup" style={{ textAlign: "center" }}> Sign up</Link> to participate in one of our auctions and place a bid, or post you artwork and start to receive offers!
+        <Link to="/signup" style={{ textAlign: "center" }}> Sign up</Link> to participate in one of our auctions and place a bid, or post you artwork and start to receive offers.
         <br/>
         <br/>
         </h2>
