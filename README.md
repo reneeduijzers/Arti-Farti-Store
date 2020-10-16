@@ -27,7 +27,7 @@ You can find a working version [here](https://artworkstore-reneeduijzers.netlify
 
 ## Sample 
 
-![App demo](https://github.com/reneeduijzers/Artwork_Store/blob/master/README_Assests/Renees-arti-farti-store.gif)
+![App demo](https://github.com/reneeduijzers/Arti-Farti-Store/blob/master/README_Assests/Arti-farti-store2.gif)
 
 ## Backend
 
